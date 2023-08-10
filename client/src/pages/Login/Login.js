@@ -1,49 +1,17 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import './Login.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import { Audio } from  'react-loader-spinner'
+import useAuth from '../../store/store';
 
 function Login() {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
-    const [user, setUser] = useState(null);
+
+    const { changeLogin } = useAuth();
 
     const [loading, setLoading] = useState(false);
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      (async() => {
-        try {
-          const result =  await localStorage.getItem("token");
-
-          if (!result) {
-            setUser(null)
-            return
-          }
-
-          const config = {
-            headers: {
-              'Content-Type': 'application/json',
-              'token': result
-            }
-          };
-
-
-          const res = await axios.get('http://localhost:3001/api/auth/', config);
-
-          setUser(res.data.user);
-        } catch (err) {
-          setUser(null)
-        }
-      })();
-    }, []);
-
-
-    if (user) {
-      return navigate('/home');
-    }
 
     const signInSubmit = async (e) => {
         e.preventDefault();
@@ -63,8 +31,8 @@ function Login() {
 
             if (res.status === 200) {
                 await localStorage.setItem("token", res.data.token)
+                changeLogin(res.data.token)
                 setLoading(false)
-                navigate('/home')
             } else {
                 setLoading(false)
                 alert(res.data.message)

@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import './SignUp.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import { Audio } from  'react-loader-spinner'
 
@@ -8,42 +8,7 @@ function SignUp() {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
 
-    const [user, setUser] = useState(null);
-
     const [loading, setLoading] = useState(false);
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      (async() => {
-        try {
-          const result =  await localStorage.getItem("token");
-
-          if (!result) {
-            setUser(null)
-            return
-          }
-
-          const config = {
-            headers: {
-              'Content-Type': 'application/json',
-              'token': result
-            }
-          };
-
-
-          const res = await axios.get('http://localhost:3001/api/auth/', config);
-
-          setUser(res.data.user);
-        } catch (err) {
-          setUser(null)
-        }
-      })();
-    }, []);
-
-    if (user) {
-        return navigate('/home');
-    }
 
     const signUpSubmit = async (e) => {
         e.preventDefault();
