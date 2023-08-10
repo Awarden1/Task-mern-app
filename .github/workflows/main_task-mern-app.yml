@@ -45,6 +45,6 @@ jobs:
       - name: Task-mern-app
         uses: azure/webapps-deploy@v2
         with:
-          app-name: your-app-name  # Replace with your Azure App Service name
+          app-name: Task-mern-app  # Replace with your Azure App Service name
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_551C905AA7634D2D80179D2E4931A9FC }}
           package: .
