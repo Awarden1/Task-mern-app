@@ -33,7 +33,7 @@ jobs:
       - name: Use the secret and update .env
         run: |
           echo "MONGO_URL=mongodb+srv://task_user:12345@hk.mtzsyle.mongodb.net/?retryWrites=true&w=majority" > .env
-          echo "jwtSecret=123 > .env
+          echo "jwtSecret=123" > .env
 
       - name: Start the server
         run: npm start
