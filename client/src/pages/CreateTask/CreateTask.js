@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Audio } from  'react-loader-spinner'
 
 import './CreateTask.css';
+import useAuth from '../../store/store';
 
 function CreateTask() {
     const titleRef = useRef(null)
@@ -98,7 +99,7 @@ function CreateTask() {
             <button type='submit' className='signIn'>
                 Create
             </button>
-            <NavLink to={'/home'} className='signUp'>
+            <NavLink to={'/'} className='signUp'>
                 Cancel
             </NavLink>
         </div>
