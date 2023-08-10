@@ -3,9 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const auth = require('../../middleware/auth');
+const auth = require('../middleware/auth');
 
-const User = require('../../model/user');
+const User = require('../model/user');
 
 router.get('/', auth, async (req, res) => {
   try {
