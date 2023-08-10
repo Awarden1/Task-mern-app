@@ -8,6 +8,7 @@ function Home() {
   const [updateTask, setUpdateTask] = useState(false)
   const [task, setTask] = useState([]);
   const [reload, setReload] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
 
   const { user, logout } = useAuth();
 
@@ -64,8 +65,9 @@ function Home() {
 
         const res = await axios.post('http://localhost:3001/api/task/updateTask', {
             taskId: task_id,
-            title: title,
-            description: description,
+            name: title,
+            department: description,
+            workingHours: selectedOption
         }, config);
 
         alert(res.data.message)
@@ -99,12 +101,23 @@ const deleteTaskSubmit = async (taskId) => {
   }
 }
 
-const openUpdateTask = (id, title, description) => {
+const openUpdateTask = (id, title, description, hour) => {
   setTaskId(id);
   setTitle(title)
   setDescription(description)
+  setSelectedOption(hour)
   setUpdateTask(true)
 }
+
+const handleOptionChange = (event) => {
+  setSelectedOption(event.target.value);
+};
+
+const options = [];
+for (let i = 1; i <= 100; i++) {
+  options.push(<option key={i} value={i}>{i}</option>);
+}
+
 
   return (
     <div>
@@ -120,25 +133,27 @@ const openUpdateTask = (id, title, description) => {
             Logout
           </button>
 
-          <NavLink to={'/createTask'} className='btn-Container'>
-            Create Task
+          <NavLink to={'/logHours'} className='btn-Container'>
+            Log hours
           </NavLink>
 
           { task.map(item => (
              <div key={item._id} className='doc-item'>
-                <h4>
-                    {item.title}
-                </h4>
                 <p>
-                  {item.description}
+                  Name: {item.name}
                 </p>
-
+                <p>
+                Department: {item.department}
+                </p>
+                <p>
+                Working Hours: {item.workingHours}
+                </p>
                 <div>
-                  <button onClick={() => openUpdateTask(item._id, item.title, item.description)} className='task-btn1'>
-                    Update Task
+                  <button onClick={() => openUpdateTask(item._id, item.name, item.department, item.workingHours)} className='task-btn1'>
+                    Update Hours
                   </button>
                   <button onClick={() => deleteTaskSubmit(item._id)} className='task-btn2'>
-                    Delete Task
+                    Delete Hours
                   </button>
                 </div>
               </div>
@@ -159,7 +174,7 @@ const openUpdateTask = (id, title, description) => {
 
               <div className='overlay-modal'>
                   <p>
-                    Title
+                    Name
                   </p>
                   <input value={title} onChange={e => setTitle(e.target.value)} />
               </div>
@@ -167,10 +182,20 @@ const openUpdateTask = (id, title, description) => {
 
               <div className='overlay-modal'>
                   <p>
-                    Description
+                    Department
                   </p>
                   <textarea value={description} onChange={e => setDescription(e.target.value)} />
               </div>
+
+              <div className='email'>
+                <h4>
+                    Working Hours
+                </h4>
+                <select value={selectedOption} onChange={handleOptionChange}>
+                    <option value="">Select an option</option>
+                    {options}
+                </select>
+            </div>
 
               <div className='overlay-btnContainer'>
                   <button type='submit' className='signIn'>

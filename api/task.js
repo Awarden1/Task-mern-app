@@ -19,19 +19,23 @@ router.post(
   '/createTask',
   auth,
   async (req, res) => {
-    const { title, description } = req.body;
+    const { name,
+      department,
+      workingHours } = req.body;
 
     try {
         const task = new Task({
             userId: req.id,
-            title,
-            description
+            name,
+            department,
+            workingHours
         });
 
         await task.save();
 
         res.status(200).json({ message: 'Task Created Succesfully' });
     } catch (err) {
+      console.log(err)
         res.status(505).send(err);
     }
   }
@@ -41,15 +45,18 @@ router.post(
     '/updateTask',
     auth,
     async (req, res) => {
-      const { taskId, title, description } = req.body;
+      const { taskId, name,
+        Department,
+        workingHours } = req.body;
 
       try {
         const task = await Task.findOneAndUpdate({
             _id: taskId
         },
         {
-            title,
-            description
+          name,
+          Department,
+          workingHours
         }, { new: true });
 
         res.status(200).json({ message: 'Task Updated Successfully' });

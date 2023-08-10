@@ -62,7 +62,7 @@ function Login() {
     <div>
         <form onSubmit={signInSubmit} className='subContainer'>
             <h1>
-                Task Mern App
+                Kristiania
             </h1>
 
             <div className='email'>

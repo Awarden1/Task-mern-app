@@ -11,11 +11,22 @@ function CreateTask() {
 
     const [loading, setLoading] = useState(false);
 
+    const [selectedOption, setSelectedOption] = useState('');
+
+        const handleOptionChange = (event) => {
+            setSelectedOption(event.target.value);
+        };
+
+        const options = [];
+        for (let i = 1; i <= 100; i++) {
+            options.push(<option key={i} value={i}>{i}</option>);
+        }
+
 
     const createTaskSubmit = async (e) => {
         e.preventDefault();
 
-        if (titleRef.current.value === '' || descriptionRef.current.value === '') {
+        if (titleRef.current.value === '' || descriptionRef.current.value === '' || selectedOption === "") {
             alert('Fields are empty')
             return
         }
@@ -37,8 +48,9 @@ function CreateTask() {
             setLoading(true)
 
             const res = await axios.post('http://localhost:3001/api/task/CreateTask', {
-                title: titleRef.current.value,
-                description: descriptionRef.current.value,
+                name: titleRef.current.value,
+                department: descriptionRef.current.value,
+                workingHours: selectedOption
             }, config);
 
             setLoading(false)
@@ -76,12 +88,12 @@ function CreateTask() {
         <form onSubmit={createTaskSubmit} className='div-sub-Container'>
 
             <h1>
-                Create Task
+                Log Hours
             </h1>
 
         <div className='email'>
             <h4>
-                Title
+                Name
             </h4>
             <input ref={titleRef}  />
         </div>
@@ -89,14 +101,24 @@ function CreateTask() {
 
         <div className='email'>
             <h4>
-                Description
+                Department
             </h4>
             <textarea ref={descriptionRef} />
         </div>
 
+        <div className='email'>
+            <h4>
+                Working Hours
+            </h4>
+            <select value={selectedOption} onChange={handleOptionChange}>
+                <option value="">Select an option</option>
+                {options}
+            </select>
+        </div>
+
         <div className='btnContainer'>
             <button type='submit' className='signIn'>
-                Create
+                log hours
             </button>
             <NavLink to={'/'} className='signUp'>
                 Cancel

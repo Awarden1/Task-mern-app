@@ -64,7 +64,7 @@ function SignUp() {
     <div>
         <form onSubmit={signUpSubmit} className='subContainer'>
             <h1>
-                Task Mern App
+                Kristiania
             </h1>
 
             <div className='email'>

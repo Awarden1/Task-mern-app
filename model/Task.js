@@ -5,11 +5,15 @@ const taskSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    title: {
+    name: {
         type: String,
         required: true
     },
-    description: {
+    department: {
+        type: String,
+        required: true
+    },
+    workingHours: {
         type: String,
         required: true
     }

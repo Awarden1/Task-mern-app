@@ -23,7 +23,7 @@ function Navigators() {
             :
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/createTask" element={<CreateTask />} />
+                  <Route path="/logHours" element={<CreateTask />} />
                 </Routes>
             }
         </Router>
