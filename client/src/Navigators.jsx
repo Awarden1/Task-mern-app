@@ -5,9 +5,7 @@ import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import Home from './pages/Home/Home';
 import CreateTask from './pages/CreateTask/CreateTask';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import useAuth, { AuthProvider } from './store/store';
+import useAuth from './store/store';
 
 function Navigators() {
   const { user } = useAuth();

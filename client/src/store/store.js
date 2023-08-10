@@ -6,15 +6,12 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
-    const [loadingInitial, setLoadingInitial] = useState(true);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         (async() => {
           try {
             const result =  await localStorage.getItem("token");
-
-            console.log(result)
 
             if (!result) {
               setUser(null)

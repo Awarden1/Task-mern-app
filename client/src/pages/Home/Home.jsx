@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Home.css'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import useAuth from '../../store/store';
 
@@ -10,7 +10,7 @@ function Home() {
   const [reload, setReload] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
 
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
 
 
   const [title, setTitle] = useState('');
