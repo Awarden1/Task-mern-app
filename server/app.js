@@ -8,6 +8,7 @@ app.use(cors())
 require('dotenv').config()
 
 app.use(express.json());
+app.use(express.static('public'))
 
 connectDB();
 

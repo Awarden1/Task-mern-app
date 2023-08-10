@@ -18,13 +18,12 @@ jobs:
         with:
           node-version: '16'  # Adjust to your desired Node.js version
 
-      - name: Install app dependencies
-        run: npm install
-        working-directory: ./client  # If your React app is in a 'client' subdirectory
-
       - name: Build React app
-        run: npm run build
         working-directory: ./client
+        run: |
+          npm install
+          npm run build
+          cp -r ./build ../server/public
 
       - name: Install backend app dependencies
         run: npm install
@@ -35,17 +34,24 @@ jobs:
           echo "MONGO_URL=mongodb+srv://task_user:12345@hk.mtzsyle.mongodb.net/?retryWrites=true&w=majority" > .env
           echo "jwtSecret=123" > .env
 
-      # - name: Start the server
-      #   run: npm start
-      #   working-directory: ./server
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v2
+        with:
+          name: mern-app
+          path: ./server
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: mern-app
 
       - name: Task-mern-app
         uses: azure/webapps-deploy@v2
