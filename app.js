@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
     res.send('Api is running');
 });
 
-// app.use('/api/auth', require('./exampsub folder/api/auth'));
-// app.use('/api/task', require('./exampsub folder/api/task'));
+app.use('/api/auth', require('./api/auth'));
+app.use('/api/task', require('./api/task'));
 
 const port = process.env.PORT || 3000;
 
