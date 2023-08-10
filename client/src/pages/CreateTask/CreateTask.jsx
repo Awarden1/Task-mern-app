@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Audio } from  'react-loader-spinner'
 
 import './CreateTask.css';
-import useAuth from '../../store/store';
 
 function CreateTask() {
     const titleRef = useRef(null)
