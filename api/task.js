@@ -9,7 +9,7 @@ router.get('/getTask', auth, async (req, res) => {
   try {
     const task = await Task.find({ userId: req.id });
 
-    res.status(200).json(task);
+    res.status(200).json({  task });
   } catch (err) {
     res.status(505).send(err);
   }
@@ -23,6 +23,7 @@ router.post(
 
     try {
         const task = new Task({
+            userId: req.id,
             title,
             description
         });
@@ -51,7 +52,7 @@ router.post(
             description
         }, { new: true });
 
-        res.status(200).json(task);
+        res.status(200).json({ message: 'Task Updated Successfully' });
       } catch (err) {
           res.status(505).send(err);
       }
@@ -59,13 +60,13 @@ router.post(
 );
 
 router.delete(
-    '/deleteTask',
+    '/deleteTask/:taskId',
     auth,
     async (req, res) => {
-      const { taskId } = req.body;
+      const { taskId } = req.params;
 
       try {
-        await Task.findByIdAndDelete(taskId);
+        await Task.findOneAndDelete({ _id: taskId});
 
         res.status(200).json({ message: 'Task Deleted Succesfully' });
       } catch (err) {

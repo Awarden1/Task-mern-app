@@ -11,7 +11,7 @@ router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.id);
 
-    res.status(200).json(user);
+    res.status(200).json({user});
   } catch (err) {
     res.status(500).send(err);
   }
@@ -50,9 +50,7 @@ router.post(
         process.env.jwtSecret,
         (err, token) => {
           if (err) throw err;
-          res
-          .cookie("token", token, { httpOnly: true })
-          .send(user);
+          res.status(200).send({token})
         }
       );
     } catch (err) {
@@ -86,17 +84,13 @@ router.post(
 
         await user.save();
 
-        res.status(200).json({ msg: 'User created successfully.' });
+        res.status(200).json({ message: 'User created successfully.' });
       } catch (err) {
+        console.log(err)
         res.status(500).send(err);
       }
     }
-  );
+);
 
-router.get(
-    '/logout', async (req, res, next) => {
-    res.clearCookie("token");
-    res.status(200).send({ success: true });
-});
 
 module.exports = router;
