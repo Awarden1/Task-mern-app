@@ -1,5 +1,7 @@
 How to run the APP:
-Go onto the package.json file and run "react-scripts start".
+First off go to package.json file and start off node app.js to connect MongoDB.
+
+Go onto the package.json file in Client folder and run "react-scripts start".
 The website will then load up and user has to create an account to enter the website.
 First register with an email, then click sign up until prompt comes up. After that, go back and sign in with the account.
 
