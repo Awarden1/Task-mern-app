@@ -1,3 +1,7 @@
+Links;
+Azure: https://task-mern-app.azurewebsites.net/
+Repository: https://github.com/Awarden1/Task-mern-app
+
 How to run the APP:
 First off go to package.json file and start off node app.js to connect MongoDB.
 
@@ -16,8 +20,8 @@ First register with an email, then click sign up until prompt comes up. After th
 * [x] Navigating in the application using React Router (remember Express Middleware)
 * [x] Reading data from the server (remember error handling)
 * [x] Writing data to the server
-* [x] Deployment to cloud (in this case, Azure) - This had problems when deploying. Worked for a while, then stopped.
-* [x] Websockets
+* [x] Deployment to cloud (in this case, Azure) 
+* [ ] Websockets
 
 
 ##Api endpoint:
@@ -54,6 +58,3 @@ to delete all the task
 
 run command: yarn run test
 
-Links;
-Azure: https://task-mern-app.azurewebsites.net/
-Repository: https://github.com/Awarden1/Task-mern-app
