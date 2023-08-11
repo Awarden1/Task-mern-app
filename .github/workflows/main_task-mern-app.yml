@@ -62,4 +62,4 @@ jobs:
 
       - name: Deploy Express Server and Start
         run: npm start
-        working-directory: ./server
+        working-directory: mern-app/server/
