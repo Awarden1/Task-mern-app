@@ -33,7 +33,7 @@ function Home() {
       };
 
 
-      const res = await axios.get('http://localhost:3001/api/task/getTask', config);
+      const res = await axios.get('/api/task/getTask', config);
 
       setTask(res.data.task);
     } catch (err) {
@@ -63,7 +63,7 @@ function Home() {
           }
         };
 
-        const res = await axios.post('http://localhost:3001/api/task/updateTask', {
+        const res = await axios.post('/api/task/updateTask', {
             taskId: task_id,
             name: title,
             department: description,
@@ -92,7 +92,7 @@ const deleteTaskSubmit = async (taskId) => {
         }
       };
 
-      const res = await axios.delete('http://localhost:3001/api/task/deleteTask/'+taskId, config);
+      const res = await axios.delete('/api/task/deleteTask/'+taskId, config);
 
       alert(res.data.message)
       setReload(!reload)

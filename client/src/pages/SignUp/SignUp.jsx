@@ -28,7 +28,7 @@ function SignUp() {
                 }
               };
 
-            const res = await axios.post('http://localhost:3001/api/auth/CreateUser', {
+            const res = await axios.post('/api/auth/CreateUser', {
                 email: emailRef.current.value,
                 password: emailRef.current.value,
             }, config);

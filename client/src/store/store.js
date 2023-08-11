@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             };
 
 
-            const res = await axios.get('http://localhost:3001/api/auth/', config);
+            const res = await axios.get('/api/auth/', config);
 
             setUser(res.data.user);
           } catch (err) {

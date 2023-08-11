@@ -19,6 +19,41 @@ First register with an email, then click sign up until prompt comes up. After th
 * [x] Deployment to cloud (in this case, Azure) - This had problems when deploying. Worked for a while, then stopped.
 * [x] Websockets
 
+
+##Api endpoint:
+
+Auth endpoint:
+
+/api/auth/login
+
+to login the user
+
+/api/auth/createUser
+
+to signup new user
+
+Task endpoints:
+
+*/api/task/getTask
+
+to get all the tasks
+
+*/api/task/createTask
+
+to create the task
+
+*/api/task/updateTask
+
+to update all the task
+
+*/api/task/deleteTask
+
+to delete all the task
+
+##Run test cases
+
+run command: yarn run test
+
 Links;
 Azure: https://task-mern-app.azurewebsites.net/
 Repository: https://github.com/Awarden1/Task-mern-app

@@ -47,7 +47,7 @@ function CreateTask() {
 
             setLoading(true)
 
-            const res = await axios.post('http://localhost:3001/api/task/CreateTask', {
+            const res = await axios.post('/api/task/CreateTask', {
                 name: titleRef.current.value,
                 department: descriptionRef.current.value,
                 workingHours: selectedOption
