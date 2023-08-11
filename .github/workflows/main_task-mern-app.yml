@@ -59,3 +59,7 @@ jobs:
           app-name: Task-mern-app  # Replace with your Azure App Service name
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_551C905AA7634D2D80179D2E4931A9FC }}
           package: .
+
+      - name: Deploy Express Server and Start
+        run: npm start
+        working-directory: ./server
